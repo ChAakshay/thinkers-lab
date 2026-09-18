@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
 import { getSiteConfig, type ProjectSlot } from "@/config/siteConfig";
 import { useLab } from "@/contexts/LabContext";
@@ -6,11 +6,23 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSound } from "@/hooks/useSound";
 import { ProjectCard } from "./ProjectCard";
 
-const filters = ["all", "hardware", "software", "experiment"] as const;
-type Filter = (typeof filters)[number];
+const categoryOrder = ["hardware", "software", "experiment"] as const;
+type CategoryType = (typeof categoryOrder)[number];
+type Filter = "all" | CategoryType;
 
-function labelFor(filter: Filter) {
-  return filter === "all" ? "ALL" : filter === "experiment" ? "EXPERIMENTS" : filter.toUpperCase();
+function labelFor(filter: Filter): string {
+  switch (filter) {
+    case "all":
+      return "ALL";
+    case "experiment":
+      return "EXPERIMENTS / AI";
+    case "hardware":
+      return "HARDWARE";
+    case "software":
+      return "SOFTWARE";
+    default:
+      return filter;
+  }
 }
 
 export function WorkshopFloor() {
@@ -19,6 +31,18 @@ export function WorkshopFloor() {
   const config = getSiteConfig(track);
   const [filter, setFilter] = useState<Filter>("all");
   const { snapSound } = useSound();
+
+  const availableFilters = useMemo<Filter[]>(() => {
+    const present = new Set(config.projectSlots.map((p) => p.category));
+    const active = categoryOrder.filter((cat) => present.has(cat));
+    return ["all", ...active];
+  }, [config.projectSlots]);
+
+  useEffect(() => {
+    if (!availableFilters.includes(filter)) {
+      setFilter("all");
+    }
+  }, [availableFilters, filter]);
 
   const projects = config.projectSlots.filter((project: ProjectSlot) => filter === "all" || project.category === filter);
 
@@ -31,7 +55,7 @@ export function WorkshopFloor() {
             <h2 className="text-4xl font-black leading-none sm:text-5xl">Modular project slots, wired for inspection.</h2>
           </div>
           <div className="dip-row" aria-label="Project filters">
-            {filters.map((item) => (
+            {availableFilters.map((item) => (
               <button
                 type="button"
                 className={`dip-switch ${filter === item ? "is-active" : ""}`}

@@ -64,7 +64,7 @@ export function Header() {
                 snapSound();
               }}
             >
-              <Wrench className="size-3" /> Hardware
+              <Wrench className="size-3" /> Systems
             </button>
             <button
               type="button"

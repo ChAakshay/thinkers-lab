@@ -36,6 +36,11 @@ export function ProjectCard({ project, index }: { project: ProjectSlot; index: n
       <div className="ruled-lines" aria-hidden="true" />
       <div className="p-5 pt-7">
         <div className="mb-3 flex flex-wrap items-center gap-2">
+          {project.domainTag ? (
+            <span className="rounded-full border-comic bg-pop-yellow px-2.5 py-1 font-mono text-xs font-bold uppercase">
+              {project.domainTag}
+            </span>
+          ) : null}
           <span className="rounded-full border-comic bg-card-stock px-2 py-1 font-mono text-xs uppercase">
             {project.category}
           </span>

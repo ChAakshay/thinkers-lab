@@ -24,9 +24,9 @@ export function SkillsWorkbench() {
       <div className="mx-auto max-w-7xl">
         <div className="reveal-child mb-8 max-w-3xl">
           <p className="stencil mb-2 text-sm">Pegboard Inventory</p>
-          <h2 className="text-4xl font-black leading-none sm:text-5xl">Skills that click into real hardware.</h2>
+          <h2 className="text-4xl font-black leading-none sm:text-5xl">From firmware registers to React components.</h2>
         </div>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
           {config.skillCategories.map((category) => {
             const Icon = icons[category.icon as keyof typeof icons] ?? Cpu;
             return (
