@@ -115,15 +115,14 @@ const commonThinkerNotes = [
 ];
 
 const commonBenchStatus: BenchStatusData = {
-  headline: "Bench Status & Field Log",
+  headline: "About",
   subheadline: "The human behind the oscilloscope, terminals, and solder smoke.",
   statusBadge: "⚡ BENCH ONLINE · PES UNIVERSITY, BENGALURU",
   whoAmI: {
     title: "Who I Am & What I Do",
     body: [
-      "I'm Aakshay — a 3rd-year Electronics & Communication Engineering student at PES University, Bengaluru. I spend most of my waking hours at the intersection where physical hardware meets reliable software.",
-      "During my internship at NoPo Nanotechnologies, I worked on real carbon nanotube manufacturing reactors. I wrote FreeRTOS firmware to eliminate mechanical motor jitter, and then built the Python SCADA pipeline that processed 66 noisy sensor tags so our team could actually understand daily batch runs.",
-      "I don't believe in staying in one silo. If an issue requires tuning a PID loop on bare metal, cleaning a messy CSV dataset, training an edge ML model, or building a React dashboard to visualize it — I enjoy doing all of it.",
+      "I'm Aakshay — a 3rd-year ECE student at PES University, Bengaluru. During my internship at NoPo Nanotechnologies, I wrote FreeRTOS firmware that runs 24/7 on a carbon nanotube manufacturing reactor, then built the Python SCADA pipeline that turns 66 noisy sensor tags into clean daily reports.",
+      "I don't stay in one silo. If a problem needs a PID loop tuned on bare metal, a messy dataset cleaned, an edge ML model trained, or a React dashboard built to visualize it all — I enjoy doing every part of it.",
     ],
     philosophyQuote:
       "Software is fast, but atoms don't care about your unit tests. Building hardware keeps you humble, and building software gives your hardware reach.",
@@ -178,18 +177,6 @@ const commonTimeline: TimelineEntry[] = [
     stamp: "IN PROGRESS",
     description:
       "Core coursework and lab focus: Embedded Microcontroller Systems, Computer Architecture & RISC-V, Digital Signal Processing (DSP), Signals & Systems, Linear Algebra, and Probability & Statistics.",
-  },
-  {
-    date: "2023",
-    title: "Karnataka Pre-University Certificate (PUC II) — 86.2%",
-    subtitle: "BASE PU College, Bengaluru",
-    stamp: "ACADEMICS",
-  },
-  {
-    date: "2021",
-    title: "ICSE Class X — 89.8%",
-    subtitle: "Innisfree House School, Bengaluru",
-    stamp: "FIRST CIRCUITS",
   },
 ];
 
@@ -310,30 +297,6 @@ export const hardwareSiteConfig: SiteConfig = {
       metricBadges: ["180-DAY MATRIX", "OFFLINE-FIRST PWA", "ZERO CLOUD DEPS"],
       techBadges: ["Vanilla JS", "Service Worker", "Canvas API", "FastAPI", "PWA"],
       githubUrl: "https://github.com/ChAakshay/recomp-180",
-    },
-    {
-      id: "risc-v-processor",
-      title: "RISC-V 5-Stage Pipeline + 8051 Bare-Metal",
-      category: "hardware",
-      domainTag: "⚡ Silicon",
-      status: "coming-soon",
-      summary:
-        "Computer architecture from first principles. Simulated a 5-stage pipelined RISC-V processor handling data forwarding and hazards, paired with bare-metal 8051 serial drivers achieving deterministic 115,200 baud UART.",
-      metricBadges: ["115,200 BAUD", "ZERO PACKET CORRUPTION", "5-STAGE PIPELINE"],
-      techBadges: ["RISC-V Assembly", "Bare-Metal C", "8051", "UART", "Timer ISRs"],
-      githubUrl: "https://github.com/ChAakshay",
-    },
-    {
-      id: "drone-sim",
-      title: "6-DOF Quadrotor Flight Dynamics",
-      category: "hardware",
-      domainTag: "🤖 Aerospace",
-      status: "coming-soon",
-      summary:
-        "Nonlinear 6-DOF dynamic simulation of a quadrotor UAV in MATLAB and Simulink. Implemented attitude stabilization and trajectory tracking using PID and state-feedback control under simulated wind disturbances.",
-      metricBadges: ["6-DOF MODEL", "PID + STATE FEEDBACK", "TRAJECTORY TRACKING"],
-      techBadges: ["MATLAB", "Simulink", "Control Theory", "Nonlinear Dynamics"],
-      githubUrl: "https://github.com/ChAakshay",
     },
   ],
   skillCategories: [
@@ -520,30 +483,6 @@ export const softwareSiteConfig: SiteConfig = {
       metricBadges: ["180-DAY MATRIX", "OFFLINE-FIRST PWA", "ZERO CLOUD DEPS"],
       techBadges: ["Vanilla JS", "Service Worker", "Canvas API", "FastAPI", "PWA"],
       githubUrl: "https://github.com/ChAakshay/recomp-180",
-    },
-    {
-      id: "reality-check",
-      title: "Wealth Trajectory Forecasting Dashboard (FinPal)",
-      category: "experiment",
-      domainTag: "💳 Fintech",
-      status: "coming-soon",
-      summary:
-        "Long-term asset compounding, cash flow modeling, Indian LTCG tax impact simulations, and Monte Carlo rent-vs-buy simulations. Dark-themed Streamlit dashboard with interactive Plotly charts.",
-      metricBadges: ["COMPOUNDING MODEL", "MONTE CARLO SIM", "LTCG TAX ENGINE"],
-      techBadges: ["Python", "Streamlit", "Plotly", "Pandas", "NumPy"],
-      githubUrl: "https://github.com/ChAakshay/fincal",
-    },
-    {
-      id: "cyberrakshak",
-      title: "Cybercrime Fraud Response Platform (CyberRakshak)",
-      category: "software",
-      domainTag: "🛡️ Civic Tech",
-      status: "coming-soon",
-      summary:
-        "Emergency response platform for financial cyber fraud victims. One-tap emergency workflows (1930 helpline), OCR bank receipt parsing, automated bank account freeze notices, and standardized FIR complaint generation.",
-      metricBadges: ["1-TAP EMERGENCY", "OCR INTEGRATION", "LEGAL FORM GEN"],
-      techBadges: ["Next.js 14", "TypeScript", "Tesseract.js", "jsPDF", "axe-core"],
-      githubUrl: "https://github.com/ChAakshay/safety_monitor",
     },
   ],
   skillCategories: [

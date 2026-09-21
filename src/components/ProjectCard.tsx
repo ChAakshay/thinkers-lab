@@ -17,7 +17,7 @@ const soundWords: Record<ProjectSlot["category"], string> = {
   experiment: "ZAP!",
 };
 
-export function ProjectCard({ project, index }: { project: ProjectSlot; index: number }) {
+export function ProjectCard({ project, index, isHero }: { project: ProjectSlot; index: number; isHero?: boolean }) {
   const { track } = useLab();
   const config = getSiteConfig(track);
   const { tickSound, thunkSound } = useSound();
@@ -25,7 +25,7 @@ export function ProjectCard({ project, index }: { project: ProjectSlot; index: n
 
   return (
     <article
-      className={`project-card reveal-child tape-corner ${project.status === "coming-soon" ? "project-card-soon" : ""}`}
+      className={`project-card reveal-child tape-corner ${project.status === "coming-soon" ? "project-card-soon" : ""} ${isHero ? "lg:col-span-2" : ""}`}
       data-card-direction={index % 2 === 0 ? "left" : "right"}
       onMouseEnter={tickSound}
     >

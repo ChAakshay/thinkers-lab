@@ -27,8 +27,9 @@ export function Header() {
 
   return (
     <header className="sticky top-progress z-header border-b-comic bg-canvas/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <div className="flex flex-wrap items-center gap-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+        {/* Left: Brand */}
+        <div className="flex items-center gap-3">
           <div className="group relative flex items-center gap-2">
             <span className="status-beacon" aria-label={config.profile.statusText} />
             <div className="beacon-card">
@@ -40,13 +41,11 @@ export function Header() {
           <a href="#top" className="link-draw font-black tracking-tight" onClick={clickSound}>
             {config.profile.name}
           </a>
-          <span className="sticker -rotate-2 bg-pop-yellow text-xs">{config.profile.statusText}</span>
-          <span className="rounded-full border-comic bg-card-stock px-3 py-1 font-mono text-xs uppercase">
-            {config.profile.locationBadge}
-          </span>
+          <span className="sticker -rotate-2 bg-pop-yellow text-xs hidden sm:inline-block">{config.profile.statusText}</span>
         </div>
 
-        <nav className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-lab-wide">
+        {/* Center: Navigation */}
+        <nav className="hidden items-center gap-2 text-xs font-bold uppercase tracking-lab-wide md:flex">
           <div
             className="flex items-center rounded-lg border-2 border-ink bg-card-stock p-0.5 shadow-hard-sm"
             role="group"
@@ -82,49 +81,50 @@ export function Header() {
             </button>
           </div>
 
-          <a href="#bench" className="link-draw min-h-touch px-1 py-3" onClick={clickSound}>
-            About
-          </a>
-          <a href="#workshop" className="link-draw min-h-touch px-1 py-3" onClick={clickSound}>
-            Projects
-          </a>
-          <a href="#skills" className="link-draw min-h-touch px-1 py-3" onClick={clickSound}>
-            Skills
-          </a>
-          <a href="#timeline" className="link-draw min-h-touch px-1 py-3" onClick={clickSound}>
-            Timeline
-          </a>
-          <Button asChild variant="labSecondary" size="touch">
-            <a href={config.contact.githubUrl} target="_blank" rel="noreferrer" onClick={clickSound}>
-              <Github /> GitHub
+          <a href="#bench" className="link-draw px-1 py-2" onClick={clickSound}>About</a>
+          <a href="#workshop" className="link-draw px-1 py-2" onClick={clickSound}>Projects</a>
+          <a href="#skills" className="link-draw px-1 py-2" onClick={clickSound}>Skills</a>
+          <a href="#connect" className="link-draw px-1 py-2" onClick={clickSound}>Connect</a>
+        </nav>
+
+        {/* Right: Actions (compact) */}
+        <div className="flex items-center gap-2">
+          <Button asChild variant="labIcon" size="iconTouch">
+            <a href={config.contact.githubUrl} target="_blank" rel="noreferrer" onClick={clickSound} aria-label="GitHub">
+              <Github />
             </a>
           </Button>
-          <Button asChild variant="labSecondary" size="touch">
-            <a href={config.contact.linkedinUrl} target="_blank" rel="noreferrer" onClick={clickSound}>
-              <Linkedin /> LinkedIn
+          <Button asChild variant="labIcon" size="iconTouch">
+            <a href={config.contact.linkedinUrl} target="_blank" rel="noreferrer" onClick={clickSound} aria-label="LinkedIn">
+              <Linkedin />
             </a>
           </Button>
-          <Button asChild variant="lab" size="touch">
+          <Button asChild variant="lab" size="touch" className="hidden sm:inline-flex">
             <a href={config.contact.resumeUrl} onClick={clickSound}>
               <FileDown /> Resume
             </a>
           </Button>
-          <Button
-            variant="labIcon"
-            size="iconTouch"
-            aria-label={soundEnabled ? "Turn lab sound off" : "Turn lab sound on"}
-            onClick={handleSoundToggle}
-          >
-            {soundEnabled ? <Volume2 /> : <VolumeX />}
-          </Button>
-          <button type="button" className="dial-shell" onClick={handleCycle} aria-label="Cycle lab atmosphere dial">
-            <span className={`dial-knob ${dialRotation[mode]}`}>
-              <span className="dial-notch" />
-            </span>
-            <span className="dial-label">lab conditions: {mode}</span>
-          </button>
-          <Zap className="hidden size-5 text-coral lab-overclock:inline-block" aria-hidden="true" />
-        </nav>
+        </div>
+      </div>
+
+      {/* Floating Lab Controls — bottom-right */}
+      <div className="fixed bottom-4 right-4 z-50 flex items-center gap-2 rounded-full border-comic bg-canvas/95 px-3 py-1.5 shadow-hard-sm backdrop-blur">
+        <Button
+          variant="labIcon"
+          size="iconTouch"
+          aria-label={soundEnabled ? "Turn lab sound off" : "Turn lab sound on"}
+          onClick={handleSoundToggle}
+          className="size-8"
+        >
+          {soundEnabled ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
+        </Button>
+        <button type="button" className="dial-shell" onClick={handleCycle} aria-label="Cycle lab atmosphere dial">
+          <span className={`dial-knob ${dialRotation[mode]}`}>
+            <span className="dial-notch" />
+          </span>
+          <span className="dial-label">{mode}</span>
+        </button>
+        <Zap className="hidden size-4 text-coral lab-overclock:inline-block" aria-hidden="true" />
       </div>
     </header>
   );

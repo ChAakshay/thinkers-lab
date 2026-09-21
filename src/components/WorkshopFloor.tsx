@@ -72,7 +72,7 @@ export function WorkshopFloor() {
         </div>
         <div className="grid gap-6 lg:grid-cols-2">
           {projects.map((project, index) => (
-            <ProjectCard project={project} index={index} key={project.id} />
+            <ProjectCard project={project} index={index} key={project.id} isHero={index === 0} />
           ))}
         </div>
       </div>

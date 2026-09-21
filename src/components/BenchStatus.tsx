@@ -1,4 +1,4 @@
-import { Activity, Coffee, Cpu, Flame, Heart, Lightbulb, Sparkles, Terminal, Wrench } from "lucide-react";
+import { Activity, Coffee, Terminal, Wrench } from "lucide-react";
 import { getSiteConfig } from "@/config/siteConfig";
 import { useLab } from "@/contexts/LabContext";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -53,12 +53,6 @@ export function BenchStatus() {
               {bench.whoAmI.body.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
-            </div>
-
-            {/* Pull Quote Note */}
-            <div className="speech-bubble mt-6 rotate-[-1deg] border-2 border-comic bg-lavender/30 p-4 text-sm font-bold leading-snug sm:text-base">
-              <Lightbulb className="mb-1 size-5 text-ink inline mr-2" />
-              <span>"{bench.whoAmI.philosophyQuote}"</span>
             </div>
           </article>
 

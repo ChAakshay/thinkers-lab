@@ -2,10 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useState } from "react";
 import { BenchStatus } from "@/components/BenchStatus";
 import { BootSequence } from "@/components/BootSequence";
+import { ConversionSection } from "@/components/ConversionSection";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { LabTimeline } from "@/components/LabTimeline";
+import { PullQuote } from "@/components/PullQuote";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { SkillsWorkbench } from "@/components/SkillsWorkbench";
 import { StickyNotes } from "@/components/StickyNotes";
@@ -56,11 +58,21 @@ function Index() {
       <div className="relative overflow-hidden">
         <StickyNotes />
         <main className="snap-y snap-proximity">
+          {/* 1. Hero — name, value prop, 2 CTAs */}
           <Hero />
+          {/* 2. Pull-quote — philosophy strip, high-personality break */}
+          <PullQuote />
+          {/* 3. About — who I am, what's on my desk, off the clock */}
           <BenchStatus />
+          {/* 4. Projects — featured work, proof of capability */}
           <WorkshopFloor />
+          {/* 5. Skills — pegboard inventory */}
           <SkillsWorkbench />
+          {/* 6. Connect — Intent Decoder CTA (placed after proof) */}
+          <ConversionSection />
+          {/* 7. Timeline — experience & education */}
           <LabTimeline />
+          {/* 8. Footer — closing argument */}
           <Footer secretUnlocked={secretUnlocked} />
         </main>
       </div>

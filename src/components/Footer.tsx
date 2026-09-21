@@ -66,7 +66,10 @@ export function Footer({ secretUnlocked }: { secretUnlocked: boolean }) {
             <p className="mt-2 text-lg font-black">{config.thinkerNotes[0]}</p>
           </div>
         ) : null}
-        <p className="mt-10 text-[10px] text-muted-on-ink">
+        <p className="mt-8 rounded-lg border border-canvas/20 px-4 py-3 text-sm font-bold text-canvas/90">
+          Open to embedded systems roles, IoT startups, and interesting hardware × software challenges — Bengaluru or remote.
+        </p>
+        <p className="mt-6 text-[10px] text-muted-on-ink">
           You scrolled all the way down. That says something about you. We should{" "}
           <a className="link-draw text-canvas" href={`mailto:${config.contact.email}`} onClick={clickSound}>
             talk
