@@ -82,8 +82,11 @@ export function Header() {
             </button>
           </div>
 
+          <a href="#bench" className="link-draw min-h-touch px-1 py-3" onClick={clickSound}>
+            About
+          </a>
           <a href="#workshop" className="link-draw min-h-touch px-1 py-3" onClick={clickSound}>
-            Workbench
+            Projects
           </a>
           <a href="#skills" className="link-draw min-h-touch px-1 py-3" onClick={clickSound}>
             Skills

@@ -27,6 +27,30 @@ export interface TimelineEntry {
   description?: string;
 }
 
+export interface BenchStatusData {
+  headline: string;
+  subheadline: string;
+  statusBadge: string;
+  whoAmI: {
+    title: string;
+    body: string[];
+    philosophyQuote: string;
+  };
+  currentlyOnDesk: {
+    title: string;
+    items: {
+      topic: string;
+      desc: string;
+      tag: string;
+      tagColor: string;
+    }[];
+  };
+  offTheClock: {
+    title: string;
+    items: string[];
+  };
+}
+
 export interface SiteConfig {
   profile: {
     name: string;
@@ -57,6 +81,7 @@ export interface SiteConfig {
     scouting: { bullets: string[]; resumeCtaText: string; footnote: string };
     builder: { greeting: string; currentProject: string; ctaText: string };
   };
+  benchStatus: BenchStatusData;
   projectSlots: ProjectSlot[];
   skillCategories: SkillCategory[];
   timeline: TimelineEntry[];
@@ -65,59 +90,106 @@ export interface SiteConfig {
 /* ─── shared constants ─── */
 
 const commonContact = {
-  email: "aakshayfreelance@gmail.com",
+  email: "aakshayproductive@gmail.com",
   phone: "+91 98865 21033",
   githubUrl: "https://github.com/ChAakshay",
   linkedinUrl: "https://linkedin.com/in/chaakshay",
-  resumeUrl: "#",
+  resumeUrl: "/CH_Aakshay_Resume_Sep2026.pdf",
 };
 
 const commonGreetings = {
-  morning: "Good morning. The soldering iron's warm and the code is compiling.",
-  afternoon: "Afternoon. Pull up a chair — I'll walk you through what's on the bench.",
-  evening: "Evening session. The best bugs get squashed after hours.",
-  lateNight: "Late night, huh? Same. Grab some coffee and let's talk systems.",
+  morning: "Good morning! The coffee is fresh and the workbench is fired up.",
+  afternoon: "Hey there! Pull up a chair — happy to walk you through what's on the bench.",
+  evening: "Evening session. The best bugs always surrender after dark.",
+  lateNight: "Late night tinkering? Grab a mug and let's talk systems.",
 };
 
 const commonThinkerNotes = [
   "Note to self: sleep() is just a compiler optimization for humans",
-  "If it works on the first try, you forgot to plug it in",
-  "TODO: prove P ≠ NP (right after fixing this UART baud rate)",
-  "The oscilloscope never lies. The datasheet, however...",
-  "Semaphores: because my tasks need personal space too",
-  "Debugging is being the detective in a crime movie where you're also the murderer",
-  "SCADA pipelines and trading systems are the same problem wearing different hats",
-  "The best code I ever wrote was a 3-point calibration routine — it just worked",
+  "If it works on the first try, check if the power supply is actually on",
+  "The oscilloscope never lies. The datasheet, however, occasionally tells polite fiction",
+  "Semaphores: because my RTOS tasks need personal space too",
+  "Debugging: playing detective in a crime movie where you also wrote the code",
+  "Industrial SCADA telemetry and financial order books are basically the same problem wearing different hats",
+  "The best code I ever wrote was a simple 3-point sensor calibration — it just worked",
 ];
+
+const commonBenchStatus: BenchStatusData = {
+  headline: "Bench Status & Field Log",
+  subheadline: "The human behind the oscilloscope, terminals, and solder smoke.",
+  statusBadge: "⚡ BENCH ONLINE · PES UNIVERSITY, BENGALURU",
+  whoAmI: {
+    title: "Who I Am & What I Do",
+    body: [
+      "I'm Aakshay — a 3rd-year Electronics & Communication Engineering student at PES University, Bengaluru. I spend most of my waking hours at the intersection where physical hardware meets reliable software.",
+      "During my internship at NoPo Nanotechnologies, I worked on real carbon nanotube manufacturing reactors. I wrote FreeRTOS firmware to eliminate mechanical motor jitter, and then built the Python SCADA pipeline that processed 66 noisy sensor tags so our team could actually understand daily batch runs.",
+      "I don't believe in staying in one silo. If an issue requires tuning a PID loop on bare metal, cleaning a messy CSV dataset, training an edge ML model, or building a React dashboard to visualize it — I enjoy doing all of it.",
+    ],
+    philosophyQuote:
+      "Software is fast, but atoms don't care about your unit tests. Building hardware keeps you humble, and building software gives your hardware reach.",
+  },
+  currentlyOnDesk: {
+    title: "What's On My Desk Right Now",
+    items: [
+      {
+        topic: "Field-Oriented Motor Control (FOC)",
+        desc: "Experimenting with BLDC motors, magnetic AS5600 angle encoders, and SimpleFOC to create dynamic digital resistance simulations.",
+        tag: "Robotics & Hardware",
+        tagColor: "bg-pop-yellow",
+      },
+      {
+        topic: "Ultra-Low-Power BLE Telemetry",
+        desc: "Designing compact sensor nodes in KiCad optimized for micro-amp sleep budgets, Li-Po charging, and custom BLE GATT services.",
+        tag: "IoT & Circuits",
+        tagColor: "bg-cyan",
+      },
+      {
+        topic: "Industrial Telemetry & SCADA Workflows",
+        desc: "Studying high-reliability time-series ingestion, automated outlier filtering (IQR), and OPC-UA / Modbus synchronization.",
+        tag: "Data Pipelines",
+        tagColor: "bg-phosphor",
+      },
+    ],
+  },
+  offTheClock: {
+    title: "Off the Clock",
+    items: [
+      "🏋️ Heavy compound lifting & body recomposition tracking (built my own offline PWA, recomp-180, to track it).",
+      "☕ Hunting down great specialty coffee across Bengaluru.",
+      "🔧 Opening up broken consumer gadgets to see how their circuit boards were cost-optimized.",
+      "📖 Reading engineering post-mortems and industrial history.",
+    ],
+  },
+};
 
 const commonTimeline: TimelineEntry[] = [
   {
     date: "Jun 2026 — Aug 2026",
-    title: "Industrial Embedded Firmware Intern",
+    title: "Industrial Embedded Firmware & Data Intern",
     subtitle: "NoPo Nanotechnologies India Pvt. Ltd. · HiPCO CNT Division · Bengaluru",
-    stamp: "DEPLOYED TO PRODUCTION",
+    stamp: "FACTORY DEPLOYED",
     description:
-      "Owned the full signal chain: Built dual-priority FreeRTOS firmware (ANIC_V7_6_8Val) for a Roll-to-Roll nanotube manufacturing rig — cut motor jitter by 40%. Constructed a 66-tag OPC-UA SCADA data pipeline across 6 reactors. Trained a physics-informed neural network predicting nanotube quality. One internship. Three layers of the stack. Zero handoffs.",
+      "Worked across the full reactor loop: wrote dual-priority FreeRTOS firmware (ANIC) for a Roll-to-Roll nanotube manufacturing rig to cut motor jitter by 40%, built an automated Python SCADA pipeline handling 66 sensor tags across 6 reactors, and trained a compact physics-informed model predicting nanotube synthesis quality.",
   },
   {
     date: "2023 — 2027",
     title: "B.Tech in Electronics & Communication Engineering",
     subtitle: "PES University, Bengaluru",
-    stamp: "SYSTEMS TRACK",
+    stamp: "IN PROGRESS",
     description:
-      "Specializing in Real-Time Operating Systems (RTOS), Embedded Microcontroller Systems, Robotic Systems, Digital Signal Processing (DSP), Computer Architecture & RISC-V, FPGA/VLSI Design, and full-stack software development.",
+      "Core coursework and lab focus: Embedded Microcontroller Systems, Computer Architecture & RISC-V, Digital Signal Processing (DSP), Signals & Systems, Linear Algebra, and Probability & Statistics.",
   },
   {
     date: "2023",
     title: "Karnataka Pre-University Certificate (PUC II) — 86.2%",
     subtitle: "BASE PU College, Bengaluru",
-    stamp: "PASSED INSPECTION",
+    stamp: "ACADEMICS",
   },
   {
     date: "2021",
     title: "ICSE Class X — 89.8%",
     subtitle: "Innisfree House School, Bengaluru",
-    stamp: "FIRST CIRCUIT BUILT",
+    stamp: "FIRST CIRCUITS",
   },
 ];
 
@@ -126,43 +198,44 @@ const commonTimeline: TimelineEntry[] = [
 export const hardwareSiteConfig: SiteConfig = {
   profile: {
     name: "CH Aakshay",
-    alias: "The Breadboard Whisperer",
-    role: "Systems Engineer · Hardware → Cloud",
+    alias: "Tinkerer & Systems Builder",
+    role: "Systems Engineer · Firmware, Pipelines & Web",
     tagline:
-      "I build systems from silicon to screen — deterministic firmware, industrial data pipelines, physics-informed ML, and the dashboards that make sense of it all.",
+      "I build systems that bridge hardware and software — from real-time microcontroller firmware and industrial sensor pipelines to clean web dashboards.",
     locationBadge: "Bengaluru, IN",
-    statusText: "LAB ONLINE",
-    currentObsession: "bridging factory-floor firmware with cloud-scale data pipelines",
+    statusText: "BENCH ONLINE",
+    currentObsession: "closed-loop FOC motor control, low-power BLE sensor nodes, and real-time data pipelines",
   },
   contact: commonContact,
   greetings: commonGreetings,
   thinkerNotes: commonThinkerNotes,
+  benchStatus: commonBenchStatus,
   hotlineChannels: {
     hire: {
       valuePills: [
-        "Ships production FreeRTOS firmware — deployed on 24/7 industrial manufacturing rigs",
-        "Builds end-to-end: same internship → firmware + SCADA pipeline + ML model. Zero handoffs.",
-        "Won't mass-apply — if I'm reaching out, I've studied your product and I want in",
+        "Shipped production FreeRTOS firmware running 24/7 on an industrial chemical manufacturing rig",
+        "End-to-end builder: wrote the firmware, the SCADA data pipeline, and the ML model during my internship",
+        "Focused outreach — I only reach out to teams whose products I genuinely want to help build",
       ],
-      ctaText: "Copy my email & let's talk",
+      ctaText: "Copy email & let's talk",
     },
     challenge: {
-      promptText: "Throw me a systems puzzle — firmware, data pipeline, sensor integration, or anything in between.",
-      submitText: "TRANSMIT TO LAB",
+      promptText: "Got a tricky puzzle — stubborn firmware, a noisy sensor bus, or a data pipeline bottleneck? Send it over.",
+      submitText: "SEND TO BENCH",
     },
     scouting: {
       bullets: [
-        "Full-vertical engineering — FreeRTOS firmware, OPC-UA SCADA pipelines, physics-informed ML, and React dashboards",
-        "Industrial production experience — 24/7 manufacturing rigs, 66-tag sensor schemas, ±0.5g calibration precision",
-        "Hardware foundation + software reach — the engineer who translates between the physical world and the digital world",
+        "Full-vertical engineering — C/C++ firmware, Python SCADA pipelines, applied ML, and React/Next.js web apps",
+        "Real factory floor experience — 24/7 industrial rigs, 66-tag sensor schemas, and calibration precision",
+        "Hardware intuition with software reach — comfortable with an oscilloscope in one hand and VS Code in the other",
       ],
-      resumeCtaText: "Download Full Dossier (Resume PDF)",
-      footnote: "P.S. — The interesting stuff isn't on the resume. Scroll down and poke around.",
+      resumeCtaText: "Download Resume (PDF)",
+      footnote: "P.S. — The best proof is in the code. Scroll down to see the project repositories.",
     },
     builder: {
-      greeting: "Hey! What are you building? I'm currently deep in",
-      currentProject: "industrial IoT telemetry pipelines, physics-informed neural networks, and ROS 2 edge robotics",
-      ctaText: "Let's jam — I'll bring the oscilloscope AND the terminal",
+      greeting: "Hey! What are you building right now? I'm currently tinkering with",
+      currentProject: "closed-loop BLDC motor control, low-power BLE sensor nodes, and time-series industrial telemetry",
+      ctaText: "Let's talk shop — always happy to jam on interesting engineering puzzles",
     },
   },
   projectSlots: [
@@ -173,7 +246,7 @@ export const hardwareSiteConfig: SiteConfig = {
       domainTag: "🏭 Industrial IoT",
       status: "featured",
       summary:
-        "Three layers of the stack, one internship. Dual-priority FreeRTOS firmware (ANIC_V7_6_8Val) for Roll-to-Roll nanotube manufacturing — PID motor control + 6-channel 24-bit ADC telemetry. Plus a 66-tag OPC-UA SCADA pipeline cleaning data across 6 reactors with IQR filtering and frozen sensor detection.",
+        "Automated data collection and motor control on an industrial chemical reactor at NoPo Nanotechnologies. Built FreeRTOS motor firmware to cut mechanical jitter by 40%, then engineered a Python pipeline to ingest, clean, and map 66 noisy sensor tags into clean daily reports.",
       metricBadges: ["40% JITTER REDUCTION", "±0.5g PRECISION", "66 SCADA TAGS"],
       techBadges: ["FreeRTOS", "ESP32", "HX711 ADC", "OPC-UA", "Modbus TCP", "Python"],
       githubUrl: "https://github.com/ChAakshay/kan_hipco_model",
@@ -185,7 +258,7 @@ export const hardwareSiteConfig: SiteConfig = {
       domainTag: "🧪 ML Research",
       status: "featured",
       summary:
-        "PI-VRBF-KAN model predicting 9 nanotube quality targets from 7 actuator inputs. 17-equation hydrodynamic transport solver, compact 1,305-parameter neural network, and an Augmented Lagrangian inverse optimizer delivering <25ms setpoint backtracking for real-time SCADA closed-loop control.",
+        "A neural network that respects physics. Built a compact 1,305-parameter KAN model predicting carbon nanotube synthesis quality from 7 reactor inputs in <25ms, delivering closed-loop setpoint recommendations without needing massive cloud clusters.",
       metricBadges: ["1,305 PARAMETERS", "<25ms OPTIMIZATION", "9 QUALITY TARGETS"],
       techBadges: ["PyTorch", "KAN Networks", "SymPy", "XGBoost", "WebGL Digital Twin"],
       githubUrl: "https://github.com/ChAakshay/kan_hipco_model",
@@ -197,7 +270,7 @@ export const hardwareSiteConfig: SiteConfig = {
       domainTag: "🤖 Robotics",
       status: "featured",
       summary:
-        "4WD autonomous patrol rover running ROS 2 Humble on Raspberry Pi 4 with Ubuntu Linux. 5 modular pub/sub nodes orchestrating locomotion, telemetry, and a 2-DOF pan-tilt camera turret with PIR motion-triggered wake and real-time YOLOv5 edge inference at 1080p@30fps.",
+        "4WD autonomous patrol rover running ROS 2 on Raspberry Pi 4. Built modular pub/sub nodes orchestrating motor drive, telemetry, and a 2-DOF pan-tilt camera turret with motion-triggered wake and YOLOv5 edge computer vision.",
       metricBadges: ["<15ms PIR WAKE", "1080p@30fps EDGE CV", "4-HOUR RUNTIME"],
       techBadges: ["ROS 2 Humble", "YOLOv5", "Raspberry Pi 4", "OpenCV", "Embedded Linux"],
       githubUrl: "https://github.com/ChAakshay/ai_theft",
@@ -209,8 +282,8 @@ export const hardwareSiteConfig: SiteConfig = {
       domainTag: "🌍 Crisis Systems",
       status: "featured",
       summary:
-        "Hackathon-winning geospatial crisis beacon + companion dispatch dashboard. Sub-3s GPS telemetry streaming into a 60-point circular breadcrumb buffer with Haversine proximity geofencing, 4-source data fusion (UN GDACS, Open-Meteo, Google News, OSM), and 120dB synthesized acoustic SOS siren.",
-      metricBadges: ["SUB-3s GPS TELEMETRY", "<100ms GEOFENCE BREACH", "🏆 HACKATHON WINNER"],
+        "A real-time emergency safety dashboard that fuses live disaster feeds, weather telemetry, and GPS geofencing to alert travelers before they walk into dangerous zones. Includes sub-100ms breach detection and an in-browser synthesized acoustic siren.",
+      metricBadges: ["SUB-3s GPS TELEMETRY", "<100ms GEOFENCE BREACH", "LIVE TELEMETRY"],
       techBadges: ["Next.js 14", "TypeScript", "Leaflet", "Web Audio API", "Haversine Engine"],
       githubUrl: "https://github.com/ChAakshay/safe_mate",
     },
@@ -221,10 +294,10 @@ export const hardwareSiteConfig: SiteConfig = {
       domainTag: "💳 Fintech ML",
       status: "wip",
       summary:
-        "Algorithmic credit underwriting with full transparency. Predicts loan default probability and exposes feature importance via SHAP force plots and summary distributions. Interactive risk scoring sliders for real-time what-if analysis — built for regulatory-compliant explainability.",
+        "Algorithmic credit underwriting focused on explainability. Predicts loan default probabilities and breaks down exactly why using SHAP force plots and interactive risk sliders, making black-box ML decisions transparent.",
       metricBadges: ["SHAP EXPLAINABILITY", "LIVE RISK SCORING", "REGULATORY READY"],
       techBadges: ["Scikit-learn", "SHAP", "Streamlit", "Pandas", "Plotly"],
-      githubUrl: "https://github.com/ChAakshay",
+      githubUrl: "https://github.com/ChAakshay/fincal",
     },
     {
       id: "recomp-180",
@@ -233,7 +306,7 @@ export const hardwareSiteConfig: SiteConfig = {
       domainTag: "🏋️ Health Tech",
       status: "wip",
       summary:
-        "Offline-first Progressive Web App for long-term metabolic health tracking. GitHub-style 180-day compliance matrix, adaptive 14-day rolling TDEE calculations, US Navy Body Fat % estimation, 7-day EMA scale smoothing, and interactive before/after photo comparison — all running on browser LocalStorage, zero cloud dependency.",
+        "An offline-first Progressive Web App for long-term metabolic health and body recomposition tracking. Runs 100% in the browser with zero cloud dependencies, calculating 14-day rolling TDEE, body fat % trends, and consistency heatmaps.",
       metricBadges: ["180-DAY MATRIX", "OFFLINE-FIRST PWA", "ZERO CLOUD DEPS"],
       techBadges: ["Vanilla JS", "Service Worker", "Canvas API", "FastAPI", "PWA"],
       githubUrl: "https://github.com/ChAakshay/recomp-180",
@@ -245,7 +318,7 @@ export const hardwareSiteConfig: SiteConfig = {
       domainTag: "⚡ Silicon",
       status: "coming-soon",
       summary:
-        "Instruction-set architecture from scratch. RISC-V 5-stage pipelined processor simulation with data forwarding and hazard mitigation. Plus bare-metal 8051 peripheral drivers — 16-bit timer ISRs and deterministic 115,200 baud full-duplex UART with zero packet corruption.",
+        "Computer architecture from first principles. Simulated a 5-stage pipelined RISC-V processor handling data forwarding and hazards, paired with bare-metal 8051 serial drivers achieving deterministic 115,200 baud UART.",
       metricBadges: ["115,200 BAUD", "ZERO PACKET CORRUPTION", "5-STAGE PIPELINE"],
       techBadges: ["RISC-V Assembly", "Bare-Metal C", "8051", "UART", "Timer ISRs"],
       githubUrl: "https://github.com/ChAakshay",
@@ -257,7 +330,7 @@ export const hardwareSiteConfig: SiteConfig = {
       domainTag: "🤖 Aerospace",
       status: "coming-soon",
       summary:
-        "Full nonlinear 6-DOF equations of motion for quadrotor UAV simulation. Attitude stabilization via PID and state-feedback control with trajectory tracking under aerodynamic disturbances. Mathematical foundations for precision agricultural spraying and autonomous reforestation drones.",
+        "Nonlinear 6-DOF dynamic simulation of a quadrotor UAV in MATLAB and Simulink. Implemented attitude stabilization and trajectory tracking using PID and state-feedback control under simulated wind disturbances.",
       metricBadges: ["6-DOF MODEL", "PID + STATE FEEDBACK", "TRAJECTORY TRACKING"],
       techBadges: ["MATLAB", "Simulink", "Control Theory", "Nonlinear Dynamics"],
       githubUrl: "https://github.com/ChAakshay",
@@ -335,43 +408,44 @@ export const hardwareSiteConfig: SiteConfig = {
 export const softwareSiteConfig: SiteConfig = {
   profile: {
     name: "CH Aakshay",
-    alias: "The Breadboard Whisperer",
+    alias: "Tinkerer & Systems Builder",
     role: "Software & Systems Engineer",
     tagline:
-      "I architect data pipelines, real-time web systems, and ML models — with the hardware intuition to debug what's upstream of the API.",
+      "I architect data pipelines, real-time web applications, and applied ML models — backed by the hardware intuition to understand what's upstream of the API.",
     locationBadge: "Bengaluru, IN",
-    statusText: "LAB ONLINE",
-    currentObsession: "physics-informed ML, real-time telemetry pipelines, and explainable AI",
+    statusText: "BENCH ONLINE",
+    currentObsession: "real-time telemetry pipelines, applied ML on production constraints, and offline-first web apps",
   },
   contact: commonContact,
   greetings: commonGreetings,
   thinkerNotes: commonThinkerNotes,
+  benchStatus: commonBenchStatus,
   hotlineChannels: {
     hire: {
       valuePills: [
-        "Built OPC-UA SCADA pipelines processing 66 industrial sensor tags across 6 reactors",
-        "Trained physics-informed neural networks with <25ms inverse optimization for real-time control",
-        "Ships full-stack: FastAPI backends, Next.js dashboards, Streamlit analytics, and PWAs",
+        "Built industrial Python pipelines processing 66 sensor tags across 6 chemical reactors",
+        "Trained physics-informed neural networks running setpoint optimization in <25ms",
+        "Ships full-stack software: FastAPI backends, Next.js dashboards, and offline-first PWAs",
       ],
-      ctaText: "Copy my email & let's talk",
+      ctaText: "Copy email & let's talk",
     },
     challenge: {
-      promptText: "Got a data pipeline bottleneck, an ML model that won't converge, or a real-time system that stutters? Let's debug it.",
-      submitText: "TRANSMIT TO LAB",
+      promptText: "Got a data pipeline bottleneck, an ML model that won't converge, or a real-time web app that stutters? Let's fix it.",
+      submitText: "SEND TO BENCH",
     },
     scouting: {
       bullets: [
-        "Industrial data pipelines — OPC-UA SCADA ingestion, IQR outlier filtering, frozen sensor detection, PLC synchronization",
-        "Applied ML with production constraints — Physics-informed KAN networks, SHAP explainability, <25ms inference budgets",
-        "Full-stack software — Next.js, FastAPI, Streamlit, PWAs with offline-first architecture and zero cloud dependencies",
+        "Industrial data pipelines — OPC-UA SCADA ingestion, IQR outlier filtering, and automated Excel reporting",
+        "Applied ML with production constraints — Physics-informed KAN models, SHAP explainability, and fast inference",
+        "Full-stack software — Next.js, FastAPI, Streamlit, and PWAs with offline-first client architecture",
       ],
-      resumeCtaText: "Download Software Dossier",
-      footnote: "Systems thinking meets software craft. The interesting stuff is below.",
+      resumeCtaText: "Download Resume (PDF)",
+      footnote: "Systems thinking meets software craft. Scroll down to inspect the code.",
     },
     builder: {
       greeting: "Hey! What are you building? I'm currently deep in",
-      currentProject: "physics-informed neural networks, SCADA data engineering, and explainable credit risk models",
-      ctaText: "Let's jam — I'll bring the Jupyter notebook",
+      currentProject: "physics-informed neural networks, SCADA data engineering, and explainable financial risk models",
+      ctaText: "Let's talk shop — I'll bring the terminal and the coffee",
     },
   },
   projectSlots: [
@@ -382,7 +456,7 @@ export const softwareSiteConfig: SiteConfig = {
       domainTag: "🧪 ML Research",
       status: "featured",
       summary:
-        "PI-VRBF-KAN model predicting 9 nanotube quality targets from 7 actuator inputs. 17-equation hydrodynamic transport solver, compact 1,305-parameter neural network, and an Augmented Lagrangian inverse optimizer delivering <25ms setpoint backtracking for real-time closed-loop control.",
+        "A neural network that respects physics. Built a compact 1,305-parameter KAN model predicting carbon nanotube synthesis quality from 7 reactor inputs in <25ms, delivering closed-loop setpoint recommendations without needing massive cloud clusters.",
       metricBadges: ["1,305 PARAMETERS", "<25ms OPTIMIZATION", "9 QUALITY TARGETS"],
       techBadges: ["PyTorch", "KAN Networks", "SymPy", "XGBoost", "WebGL Digital Twin"],
       githubUrl: "https://github.com/ChAakshay/kan_hipco_model",
@@ -394,7 +468,7 @@ export const softwareSiteConfig: SiteConfig = {
       domainTag: "🏭 Industrial IoT",
       status: "featured",
       summary:
-        "Production data engineering pipeline ingesting raw SCADA time-series across 6 chemical reactors (66 instrument tags). Automated phase windowing, IQR outlier filtering, frozen sensor detection, and direct translation into PLC register workbooks via OPC-UA and Modbus TCP.",
+        "Production data pipeline ingesting raw SCADA time-series across 6 chemical reactors (66 sensor tags). Automated phase windowing, IQR outlier filtering, sensor fault detection, and direct translation into standardized daily workbooks.",
       metricBadges: ["66 SCADA TAGS", "6 REACTORS", "PRODUCTION DEPLOYED"],
       techBadges: ["Python", "OPC-UA", "Modbus TCP", "Pandas", "CustomTkinter"],
       githubUrl: "https://github.com/ChAakshay/kan_hipco_model",
@@ -406,8 +480,8 @@ export const softwareSiteConfig: SiteConfig = {
       domainTag: "🌍 Crisis Systems",
       status: "featured",
       summary:
-        "Hackathon-winning geospatial crisis beacon + companion dispatch dashboard. Sub-3s GPS telemetry streaming, 4-source data fusion, Haversine proximity geofencing, and 120dB synthesized acoustic SOS siren. Full Next.js stack with real-time telemetry.",
-      metricBadges: ["SUB-3s GPS TELEMETRY", "<100ms GEOFENCE BREACH", "🏆 HACKATHON WINNER"],
+        "A real-time emergency safety dashboard that fuses live disaster feeds, weather telemetry, and GPS geofencing to alert travelers before they walk into dangerous zones. Includes sub-100ms breach detection and an in-browser synthesized acoustic siren.",
+      metricBadges: ["SUB-3s GPS TELEMETRY", "<100ms GEOFENCE BREACH", "LIVE TELEMETRY"],
       techBadges: ["Next.js 14", "TypeScript", "Leaflet", "Web Audio API", "Server-Sent Events"],
       githubUrl: "https://github.com/ChAakshay/safe_mate",
     },
@@ -418,7 +492,7 @@ export const softwareSiteConfig: SiteConfig = {
       domainTag: "🤖 Robotics",
       status: "featured",
       summary:
-        "ROS 2 distributed edge pipeline on Raspberry Pi 4. 5 modular pub/sub nodes orchestrating locomotion, telemetry, and real-time YOLOv5 inference. Computer vision theft detection streaming 1080p@30fps across a 150m² patrol perimeter.",
+        "4WD autonomous patrol rover running ROS 2 on Raspberry Pi 4. Built modular pub/sub nodes orchestrating motor drive, telemetry, and a 2-DOF pan-tilt camera turret with motion-triggered wake and YOLOv5 edge computer vision.",
       metricBadges: ["<15ms PIR WAKE", "1080p@30fps EDGE CV", "5-NODE ROS 2 GRAPH"],
       techBadges: ["ROS 2 Humble", "Python", "YOLOv5", "OpenCV", "Embedded Linux"],
       githubUrl: "https://github.com/ChAakshay/ai_theft",
@@ -430,10 +504,10 @@ export const softwareSiteConfig: SiteConfig = {
       domainTag: "💳 Fintech ML",
       status: "wip",
       summary:
-        "Algorithmic credit underwriting with full SHAP explainability. Predicts loan default probability and exposes feature importance via force plots and summary distributions. Interactive risk scoring sliders for real-time what-if analysis — built for regulatory-compliant transparency.",
+        "Algorithmic credit underwriting focused on explainability. Predicts loan default probabilities and breaks down exactly why using SHAP force plots and interactive risk sliders, making black-box ML decisions transparent.",
       metricBadges: ["SHAP EXPLAINABILITY", "LIVE RISK SCORING", "REGULATORY READY"],
       techBadges: ["Scikit-learn", "SHAP", "Streamlit", "Pandas", "Plotly"],
-      githubUrl: "https://github.com/ChAakshay",
+      githubUrl: "https://github.com/ChAakshay/fincal",
     },
     {
       id: "recomp-180",
@@ -442,34 +516,34 @@ export const softwareSiteConfig: SiteConfig = {
       domainTag: "🏋️ Health Tech",
       status: "wip",
       summary:
-        "Offline-first Progressive Web App for long-term metabolic health tracking. GitHub-style 180-day compliance matrix, adaptive TDEE calculations, US Navy Body Fat % estimation, and interactive before/after photo comparison — 100% serverless via browser LocalStorage.",
+        "An offline-first Progressive Web App for long-term metabolic health and body recomposition tracking. Runs 100% in the browser with zero cloud dependencies, calculating 14-day rolling TDEE, body fat % trends, and consistency heatmaps.",
       metricBadges: ["180-DAY MATRIX", "OFFLINE-FIRST PWA", "ZERO CLOUD DEPS"],
       techBadges: ["Vanilla JS", "Service Worker", "Canvas API", "FastAPI", "PWA"],
       githubUrl: "https://github.com/ChAakshay/recomp-180",
     },
     {
       id: "reality-check",
-      title: "Wealth Trajectory Forecasting Dashboard",
+      title: "Wealth Trajectory Forecasting Dashboard (FinPal)",
       category: "experiment",
       domainTag: "💳 Fintech",
       status: "coming-soon",
       summary:
-        "Long-term asset compounding, cash flow modeling, savings rate impact simulations, and net-worth milestone visualization. Custom dark-themed Streamlit dashboard with interactive Plotly charts for personal financial planning.",
-      metricBadges: ["COMPOUNDING MODEL", "CASH FLOW SIM", "MILESTONE TRACKER"],
+        "Long-term asset compounding, cash flow modeling, Indian LTCG tax impact simulations, and Monte Carlo rent-vs-buy simulations. Dark-themed Streamlit dashboard with interactive Plotly charts.",
+      metricBadges: ["COMPOUNDING MODEL", "MONTE CARLO SIM", "LTCG TAX ENGINE"],
       techBadges: ["Python", "Streamlit", "Plotly", "Pandas", "NumPy"],
-      githubUrl: "https://github.com/ChAakshay",
+      githubUrl: "https://github.com/ChAakshay/fincal",
     },
     {
       id: "cyberrakshak",
-      title: "Cybercrime Fraud Response Platform",
+      title: "Cybercrime Fraud Response Platform (CyberRakshak)",
       category: "software",
       domainTag: "🛡️ Civic Tech",
       status: "coming-soon",
       summary:
-        "Emergency response platform for cyber financial fraud victims. Trauma-informed UI with one-tap emergency workflows (1930 helpline), automated bank account freeze notices, Section 503 Magistrate restitution petition drafting, and standardized FIR complaint dossier generation.",
-      metricBadges: ["1-TAP EMERGENCY", "AUTO PDF GENERATION", "LEGAL COMPLIANCE"],
-      techBadges: ["Next.js", "TypeScript", "PDF Generation", "Legal Forms"],
-      githubUrl: "https://github.com/ChAakshay",
+        "Emergency response platform for financial cyber fraud victims. One-tap emergency workflows (1930 helpline), OCR bank receipt parsing, automated bank account freeze notices, and standardized FIR complaint generation.",
+      metricBadges: ["1-TAP EMERGENCY", "OCR INTEGRATION", "LEGAL FORM GEN"],
+      techBadges: ["Next.js 14", "TypeScript", "Tesseract.js", "jsPDF", "axe-core"],
+      githubUrl: "https://github.com/ChAakshay/safety_monitor",
     },
   ],
   skillCategories: [

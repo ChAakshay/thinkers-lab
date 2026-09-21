@@ -60,7 +60,7 @@ export function Hero() {
             <p className="mt-5 max-w-3xl text-xl font-bold leading-snug sm:text-2xl">{config.profile.tagline}</p>
           </div>
           <aside className="speech-bubble rotate-1 text-lg font-black leading-tight lg:mt-16">
-            <RadioTower className="mb-3 size-8" /> Systems Lab — now accepting sensor puzzles, data pipeline chaos, stubborn firmware, and impossible deadlines.
+            <RadioTower className="mb-3 size-8" /> Welcome to the workbench! Pull up a chair — grab some coffee and explore the systems, firmware, and code I've been tinkering with.
           </aside>
         </div>
         <div className="reveal-child">

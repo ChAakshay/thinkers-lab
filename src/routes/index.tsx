@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useState } from "react";
+import { BenchStatus } from "@/components/BenchStatus";
 import { BootSequence } from "@/components/BootSequence";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -56,6 +57,7 @@ function Index() {
         <StickyNotes />
         <main className="snap-y snap-proximity">
           <Hero />
+          <BenchStatus />
           <WorkshopFloor />
           <SkillsWorkbench />
           <LabTimeline />
