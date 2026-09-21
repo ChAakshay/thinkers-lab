@@ -38,8 +38,13 @@ export function Footer({ secretUnlocked }: { secretUnlocked: boolean }) {
                 {bursting ? <SparkBurst /> : null}
               </div>
               <Button asChild variant="labSecondary" size="touch">
+                <a href={config.contact.linkedinUrl} target="_blank" rel="noreferrer" onClick={clickSound}>
+                  <Linkedin /> Connect on LinkedIn
+                </a>
+              </Button>
+              <Button asChild variant="labSecondary" size="touch">
                 <a href={`tel:${config.contact.phone.replace(/\s/g, "")}`} onClick={clickSound}>
-                  <Phone /> {config.contact.phone}
+                  <Phone className="size-4" /> Call
                 </a>
               </Button>
             </div>
@@ -50,9 +55,9 @@ export function Footer({ secretUnlocked }: { secretUnlocked: boolean }) {
                 <Github /> GitHub
               </a>
             </Button>
-            <Button asChild variant="labSecondary" size="touch">
-              <a href={config.contact.linkedinUrl} target="_blank" rel="noreferrer" onClick={clickSound}>
-                <Linkedin /> LinkedIn
+            <Button asChild variant="lab" size="touch">
+              <a href={config.contact.resumeUrl} onClick={clickSound}>
+                Grab Resume (PDF)
               </a>
             </Button>
             <svg className="waveform" viewBox="0 0 40 12" aria-hidden="true">

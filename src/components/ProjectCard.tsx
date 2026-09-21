@@ -1,4 +1,4 @@
-import { ExternalLink, Paperclip } from "lucide-react";
+import { ExternalLink, FileText, Paperclip } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { ProjectSlot } from "@/config/siteConfig";
 import { getSiteConfig } from "@/config/siteConfig";
@@ -17,10 +17,17 @@ const soundWords: Record<ProjectSlot["category"], string> = {
   experiment: "ZAP!",
 };
 
-export function ProjectCard({ project, index, isHero }: { project: ProjectSlot; index: number; isHero?: boolean }) {
+interface ProjectCardProps {
+  project: ProjectSlot;
+  index: number;
+  isHero?: boolean;
+  onOpenLabReport?: (project: ProjectSlot) => void;
+}
+
+export function ProjectCard({ project, index, isHero, onOpenLabReport }: ProjectCardProps) {
   const { track } = useLab();
   const config = getSiteConfig(track);
-  const { tickSound, thunkSound } = useSound();
+  const { tickSound, thunkSound, confirmSound } = useSound();
   const href = project.githubUrl ?? `mailto:${config.contact.email}?subject=${encodeURIComponent(project.title)}`;
 
   return (
@@ -75,11 +82,28 @@ export function ProjectCard({ project, index, isHero }: { project: ProjectSlot; 
             <span className="tech-badge" key={badge}>{badge}</span>
           ))}
         </div>
-        <Button asChild variant="labSecondary" size="touch" className="mt-5">
-          <a href={href} target={project.githubUrl ? "_blank" : undefined} rel={project.githubUrl ? "noreferrer" : undefined} onClick={thunkSound}>
-            Open Lab Notes <ExternalLink />
-          </a>
-        </Button>
+        
+        {/* Actions */}
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          {onOpenLabReport && project.labReport ? (
+            <Button
+              type="button"
+              variant="lab"
+              size="touch"
+              onClick={() => {
+                onOpenLabReport(project);
+                confirmSound();
+              }}
+            >
+              <FileText className="size-4" /> Inspect Lab Report
+            </Button>
+          ) : null}
+          <Button asChild variant="labSecondary" size="touch">
+            <a href={href} target={project.githubUrl ? "_blank" : undefined} rel={project.githubUrl ? "noreferrer" : undefined} onClick={thunkSound}>
+              {project.githubUrl ? "GitHub" : "Ask About This"} <ExternalLink className="size-3.5" />
+            </a>
+          </Button>
+        </div>
       </div>
     </article>
   );

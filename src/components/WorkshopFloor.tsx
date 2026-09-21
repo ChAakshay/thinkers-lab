@@ -5,6 +5,7 @@ import { useLab } from "@/contexts/LabContext";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSound } from "@/hooks/useSound";
 import { ProjectCard } from "./ProjectCard";
+import { LabReportModal } from "./LabReportModal";
 
 const categoryOrder = ["hardware", "software", "experiment"] as const;
 type CategoryType = (typeof categoryOrder)[number];
@@ -30,6 +31,7 @@ export function WorkshopFloor() {
   const { track } = useLab();
   const config = getSiteConfig(track);
   const [filter, setFilter] = useState<Filter>("all");
+  const [selectedProject, setSelectedProject] = useState<ProjectSlot | null>(null);
   const { snapSound } = useSound();
 
   const availableFilters = useMemo<Filter[]>(() => {
@@ -51,8 +53,12 @@ export function WorkshopFloor() {
       <div className="mx-auto max-w-7xl">
         <div className="reveal-child mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="stencil mb-2 flex items-center gap-2 text-sm"><SlidersHorizontal className="size-4" /> Workshop Floor</p>
-            <h2 className="text-4xl font-black leading-none sm:text-5xl">Modular project slots, wired for inspection.</h2>
+            <p className="stencil mb-2 flex items-center gap-2 text-sm">
+              <SlidersHorizontal className="size-4" /> Workshop Floor
+            </p>
+            <h2 className="text-4xl font-black leading-none sm:text-5xl">
+              Modular project slots, wired for inspection.
+            </h2>
           </div>
           <div className="dip-row" aria-label="Project filters">
             {availableFilters.map((item) => (
@@ -72,10 +78,26 @@ export function WorkshopFloor() {
         </div>
         <div className="grid gap-6 lg:grid-cols-2">
           {projects.map((project, index) => (
-            <ProjectCard project={project} index={index} key={project.id} isHero={index === 0} />
+            <ProjectCard
+              project={project}
+              index={index}
+              key={project.id}
+              isHero={index === 0}
+              onOpenLabReport={(p) => setSelectedProject(p)}
+            />
           ))}
         </div>
       </div>
+
+      {/* Interactive Lab Report Dossier Modal */}
+      <LabReportModal
+        project={selectedProject}
+        open={Boolean(selectedProject)}
+        onOpenChange={(open) => {
+          if (!open) setSelectedProject(null);
+        }}
+        email={config.contact.email}
+      />
     </section>
   );
 }

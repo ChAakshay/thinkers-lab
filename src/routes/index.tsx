@@ -9,6 +9,7 @@ import { Hero } from "@/components/Hero";
 import { LabTimeline } from "@/components/LabTimeline";
 import { PullQuote } from "@/components/PullQuote";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { SignalStrip } from "@/components/SignalStrip";
 import { SkillsWorkbench } from "@/components/SkillsWorkbench";
 import { StickyNotes } from "@/components/StickyNotes";
 import { WorkshopFloor } from "@/components/WorkshopFloor";
@@ -64,15 +65,17 @@ function Index() {
           <PullQuote />
           {/* 3. About — who I am, what's on my desk, off the clock */}
           <BenchStatus />
-          {/* 4. Projects — featured work, proof of capability */}
+          {/* 4. Signal Proof Strip — 4 vetted metrics */}
+          <SignalStrip />
+          {/* 5. Projects — featured work, proof of capability */}
           <WorkshopFloor />
-          {/* 5. Skills — pegboard inventory */}
+          {/* 6. Skills — pegboard inventory with confidence tiers */}
           <SkillsWorkbench />
-          {/* 6. Connect — Intent Decoder CTA (placed after proof) */}
+          {/* 7. Connect — Intent Decoder CTA (placed after proof) */}
           <ConversionSection />
-          {/* 7. Timeline — experience & education */}
+          {/* 8. Timeline — experience & education */}
           <LabTimeline />
-          {/* 8. Footer — closing argument */}
+          {/* 9. Footer — closing argument */}
           <Footer secretUnlocked={secretUnlocked} />
         </main>
       </div>
